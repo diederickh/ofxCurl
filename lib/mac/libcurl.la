@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/diederickhuijbers/Downloads/curl-7.21.1/stage/lib'
+libdir='/Users/diederickhuijbers/Downloads/curl-7.21.1_2_stage/lib'

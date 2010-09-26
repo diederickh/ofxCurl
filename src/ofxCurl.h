@@ -2,7 +2,7 @@
 #define OFXCURLH
 
 #include <string>
-
+#include "ofxCurlForm.h"
 class ofxCurl {
 public:
     ofxCurl();
