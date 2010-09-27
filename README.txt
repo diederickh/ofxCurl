@@ -33,6 +33,17 @@ make install
 
 Then I'm compiling a 10.6, i386 architecture project in XCode.
 
+Examples
+================================================================================
+MAC:		Use these preprocessor defines:	
+		OFXCURL_WITH_OFXCOMMANDPATTERN
+		CURL_STATIC
+		
+		And add this search path:
+		../../../addons_diederick/ofxCurl/lib/mac/
+
+		
+
 IMPORTANT:
 ================================================================================
 In Code::Blocks I had to define these two defines to make it 

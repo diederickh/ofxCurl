@@ -6,6 +6,10 @@ ofxCurlFormTypeInput::ofxCurlFormTypeInput(std::string sName)
 {
 }
 
+ofxCurlFormTypeInput::~ofxCurlFormTypeInput() {
+		std::cout << "~~~~ ofxCurlFormTypeInput()" << std::endl;
+}
+
 void ofxCurlFormTypeInput::setValue(std::string sValue) {
 	val = sValue;
 }

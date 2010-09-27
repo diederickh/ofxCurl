@@ -6,6 +6,7 @@ class ofxCurlForm;
 class ofxCurlFormType {
 public:
     ofxCurlFormType(std::string sName);
+	virtual ~ofxCurlFormType(){};
 	std::string getName();
 	void setName(std::string sName);
 	
