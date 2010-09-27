@@ -33,14 +33,16 @@ make install
 
 Then I'm compiling a 10.6, i386 architecture project in XCode.
 
-Examples
+Install (both WIN / MAC)
 ================================================================================
-MAC:		Use these preprocessor defines:	
-		OFXCURL_WITH_OFXCOMMANDPATTERN
-		CURL_STATIC
+Use these preprocessor defines:	
+	OFXCURL_WITH_OFXCOMMANDPATTERN
+	CURL_STATIC
 		
-		And add this search path:
-		../../../addons_diederick/ofxCurl/lib/mac/
+Install MAC (both WIN / MAC)
+================================================================================
+Add this search path:
+	../../../addons_diederick/ofxCurl/lib/mac/
 
 		
 
@@ -51,3 +53,7 @@ link:
 
 CURL_STATICLIB
 CURL_DISABLE_LDAP
+
+I also changed the curl-7.21.1\lib\config-win32.h file and added this define
+at the top:
+#define CURL_DISABLE_LDAP

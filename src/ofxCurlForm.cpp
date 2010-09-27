@@ -33,8 +33,8 @@ ofxCurlForm& ofxCurlForm::addFile(std::string sName, std::string sFilePath) {
 ofxCurlForm& ofxCurlForm::post() {
 	// let all elements add themself to the form.
 	CURL* easy_handle;
-	
-	parseForm();	
+
+	parseForm();
 	curl_global_init(CURL_GLOBAL_ALL);
 	// TODO: add some error handling; see this: http://curl.haxx.se/libcurl/c/postit2.html
 	easy_handle = curl_easy_init();
@@ -45,7 +45,7 @@ ofxCurlForm& ofxCurlForm::post() {
 	// free list..
 	curl_easy_cleanup(easy_handle);
 	curl_formfree(post_curr);
-	
+	std::cout << "ofxCurlForm: posting to: " << action << std::endl;
 	return *this;
 }
 

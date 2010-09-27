@@ -1,3 +1,4 @@
+#ifdef OFXCURL_WITH_OFXCOMMANDPATTERN
 #include "ofxCurlForm.h"
 #include "ofxCurlFormProcessor.h"
 #include "ofxCurlFormCommand.h"
@@ -21,4 +22,4 @@ void ofxCurlFormProcessor::addForm(ofxCurlForm* pForm) {
 	processor.enqueue(cmd);
 }
 
-
+#endif

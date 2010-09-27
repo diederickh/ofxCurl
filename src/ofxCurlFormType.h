@@ -1,7 +1,7 @@
 #ifndef OFXCURLFORMTYPEH
 #define OFXCURLFORMTYPEH
 #include <string>
-#include <curl/curl.h>
+#include "curl.h"
 class ofxCurlForm;
 class ofxCurlFormType {
 public:
@@ -9,7 +9,7 @@ public:
 	virtual ~ofxCurlFormType(){};
 	std::string getName();
 	void setName(std::string sName);
-	
+
 	// This method is called when the type needs to add itself to the form
 	//--------------------------------------------------------------------------
 	virtual void addToForm(
@@ -17,7 +17,7 @@ public:
 			,curl_httppost** pCurr
 			,curl_httppost** pLast
 	) = 0;
-	
+
 protected:
     std::string name;
 };
