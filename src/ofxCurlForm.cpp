@@ -33,12 +33,21 @@ ofxCurlForm& ofxCurlForm::addFile(std::string sName, std::string sFilePath) {
 ofxCurlForm& ofxCurlForm::post() {
 	// let all elements add themself to the form.
 	CURL* easy_handle;
+    CURLcode result;
 
 	parseForm();
 	curl_global_init(CURL_GLOBAL_ALL);
 	// TODO: add some error handling; see this: http://curl.haxx.se/libcurl/c/postit2.html
 	easy_handle = curl_easy_init();
 	curl_easy_setopt(easy_handle, CURLOPT_URL, action.c_str());
+    //curl_easy_setopt(easy_handle, CURLOPT_VERBOSE,CURLOPT_STDERR);
+
+	// Remove the Expect: from header; can give problems.. (when you get a 417 error)
+	struct curl_slist *header_list= NULL;
+    static const char buf[] = "Expect:";
+    header_list = curl_slist_append(header_list,buf);
+    curl_easy_setopt(easy_handle, CURLOPT_HTTPHEADER, header_list);
+
 	curl_easy_setopt(easy_handle, CURLOPT_HTTPPOST, post_curr);
 	curl_easy_perform(easy_handle);
 
