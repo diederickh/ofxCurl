@@ -9,8 +9,8 @@ public:
 	void setValue(std::string sValue);
 	virtual void addToForm(
 			ofxCurlForm* pForm
-			,struct curl_httppost** pCurr
-			,struct curl_httppost** pLast
+			,curl_httppost** pCurr
+			,curl_httppost** pLast
 	);
 	
 protected:

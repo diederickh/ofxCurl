@@ -20,6 +20,5 @@ private:
 	
 	struct curl_httppost* post_curr;
 	struct curl_httppost* post_last;
-	
 };
 #endif

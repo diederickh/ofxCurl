@@ -13,8 +13,8 @@ public:
 	//--------------------------------------------------------------------------
 	virtual void addToForm(
 			ofxCurlForm* pForm
-			,struct curl_httppost** pCurr
-			,struct curl_httppost** pLast
+			,curl_httppost** pCurr
+			,curl_httppost** pLast
 	) = 0;
 	
 protected:

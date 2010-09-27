@@ -12,20 +12,18 @@ void ofxCurlFormTypeInput::setValue(std::string sValue) {
 
 void ofxCurlFormTypeInput::addToForm(
 			ofxCurlForm* pForm
-			,struct curl_httppost** pCurr
-			,struct curl_httppost** pLast
+			,curl_httppost** pCurr
+			,curl_httppost** pLast
 )
 {
 	std::cout << "ofxCurlFormTypeInput: " << name << " = " << val << std::endl;
-	struct curl_httppost* tmp;
-	//struct curl_httppost* tmp2= NULL;
 	curl_formadd(
-			&tmp
-			,&tmp
+			pCurr
+			,pLast
 			,CURLFORM_COPYNAME
-			,name
+			,name.c_str()
 			,CURLFORM_COPYCONTENTS
-			,val
+			,val.c_str()
 			,CURLFORM_END
 	);
 }
