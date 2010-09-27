@@ -1,0 +1,17 @@
+<install>
+	<name>ofxCurl</name>
+	<version>0.01</version>
+	<author>Diederick Huijbers</author>
+	
+	<add>
+		<include>
+			<path>..\..\..\addons_diederick\ofxCurl\src\include\curl\</path>
+			<path>..\..\..\addons_diederick\ofxCurl\src\</path>
+		</include>
+		
+		<link>
+			<lib os="win_cb" compiler="codeblocks">..\..\..\addons_diederick\ofxCurl\lib\win\libcurl.a</lib>
+		</link>
+	</add>
+	
+</install>
