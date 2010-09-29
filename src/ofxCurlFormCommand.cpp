@@ -2,6 +2,8 @@
 #include "ofxCurlFormCommand.h"
 #include "ofxCurlForm.h"
 #include "ofMain.h"
+#include "ofxLog.h"
+
 #include <iostream>
 ofxCurlFormCommand::ofxCurlFormCommand(std::string sName, ofxCurlForm* pForm)
 	:ofxCommand(sName)
@@ -10,13 +12,13 @@ ofxCurlFormCommand::ofxCurlFormCommand(std::string sName, ofxCurlForm* pForm)
 }
 
 ofxCurlFormCommand::~ofxCurlFormCommand() {
-	std::cout << "~~~~ ofxCurlFormCommand()" << std::endl;
+	OFXLOG("~~~~ ofxCurlFormCommand() - delete form");
 	form->cleanup();
 	delete form;
 }
 
 bool ofxCurlFormCommand::execute() {
-    std::cout << "ofxCurlFormCommand: execute()" <<std::endl;
+    OFXLOG("ofxCurlFormCommand: execute()");
 	form->post();
 	return true;
 }

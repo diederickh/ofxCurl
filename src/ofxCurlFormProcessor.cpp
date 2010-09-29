@@ -2,22 +2,23 @@
 #include "ofxCurlForm.h"
 #include "ofxCurlFormProcessor.h"
 #include "ofxCurlFormCommand.h"
+#include "ofxLog.h"
 
 ofxCurlFormProcessor::ofxCurlFormProcessor() {
 
 }
 
 ofxCurlFormProcessor::~ofxCurlFormProcessor() {
-	std::cout << "~~~~ ofxCurlFormProcessor()" << std::endl;
+	OFXLOG("~~~~ ofxCurlFormProcessor()");
 }
 
 void ofxCurlFormProcessor::start() {
-	std::cout << "ofxCurlFormProcessor.start()" << std::endl;
+	OFXLOG("ofxCurlFormProcessor.start()");
 	processor.start();
 }
 
 void ofxCurlFormProcessor::addForm(ofxCurlForm* pForm) {
-	std::cout << "ofxCurlFormProcessor.addForm()" << std::endl;
+	OFXLOG("ofxCurlFormProcessor.addForm()");
 	ofxCurlFormCommand* cmd = new ofxCurlFormCommand("ofxcurlform", pForm);
 	processor.enqueue(cmd);
 }
