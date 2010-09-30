@@ -19,8 +19,9 @@ void ofxCurlFormProcessor::start() {
 
 void ofxCurlFormProcessor::addForm(ofxCurlForm* pForm) {
 	OFXLOG("ofxCurlFormProcessor.addForm()");
-	ofxCurlFormCommand* cmd = new ofxCurlFormCommand("ofxcurlform", pForm);
-	processor.enqueue(cmd);
+	processor.enqueue(boost::shared_ptr<ofxCommand>(new ofxCurlFormCommand("ofxcurlform", pForm)));
+	//ofxCurlFormCommand* cmd = new ofxCurlFormCommand("ofxcurlform", pForm);
+	//processor.enqueue(cmd);
 }
 
 #endif

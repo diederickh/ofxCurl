@@ -3,22 +3,22 @@
 
 
 
-// define this in  you preprocessor settings when you want to use the 
+// define this in  you preprocessor settings when you want to use the
 // form processor which processes form in a separate thread.
 #ifdef OFXCURL_WITH_OFXCOMMANDPATTERN
 
 // Include correct command processor file.
 #if defined( __WIN32__ ) || defined( _WIN32 )
 	#include "ofxCommandProcessorThreadWin.h"
-#elif defined(__APPLE__)	
+#elif defined(__APPLE__)
 	#include "ofxCommandProcessorThreadMac.h"
 #endif
 
-#include "ofxCommand.h"	
-	
-class ofxCurlForm;	
+#include "ofxCommand.h"
+#include <boost/shared_ptr.hpp>
+class ofxCurlForm;
 class ofxCurlFormProcessor {
-	public: 
+	public:
 		ofxCurlFormProcessor();
 		~ofxCurlFormProcessor();
 		void start();
@@ -26,9 +26,9 @@ class ofxCurlFormProcessor {
 	private:
 		#if defined( __WIN32__ ) || defined( _WIN32 )
 			ofxCommandProcessorThreadWin processor;
-		#elif defined(__APPLE__)	
+		#elif defined(__APPLE__)
 			ofxCommandProcessorThreadMac processor;
-		#endif	
+		#endif
 };
 
 #endif // OFXCURL_WITH_OFXCOMMANDPATTERN
