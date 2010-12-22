@@ -1,6 +1,5 @@
 #include "ofxCurlFormTypeInput.h"
 #include "curl.h"
-#include "ofxLog.h"
 #include <iostream>
 ofxCurlFormTypeInput::ofxCurlFormTypeInput(std::string sName)
 	:ofxCurlFormType(sName)
@@ -8,7 +7,6 @@ ofxCurlFormTypeInput::ofxCurlFormTypeInput(std::string sName)
 }
 
 ofxCurlFormTypeInput::~ofxCurlFormTypeInput() {
-	OFXLOG("~~~~ ofxCurlFormTypeInput()");
 }
 
 void ofxCurlFormTypeInput::setValue(std::string sValue) {
@@ -21,7 +19,6 @@ void ofxCurlFormTypeInput::addToForm(
 			,curl_httppost** pLast
 )
 {
-	OFXLOG("ofxCurlFormTypeInput: " << name << " = " << val);
 	curl_formadd(
 			pCurr
 			,pLast

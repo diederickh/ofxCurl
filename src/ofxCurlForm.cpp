@@ -12,8 +12,7 @@ ofxCurlForm::ofxCurlForm(std::string sPostURL)
 	curl_global_init(CURL_GLOBAL_ALL);
 }
 
-ofxCurlForm::~ofxCurlForm() {
-	std::cout << "~~~~ ofxCurlForm()" << std::endl;
+ofxCurlForm::~ofxCurlForm() {	
 }
 
 ofxCurlForm& ofxCurlForm::addInput(std::string sName, std::string sValue) {
@@ -54,7 +53,6 @@ ofxCurlForm& ofxCurlForm::post() {
 	// free list..
 	curl_easy_cleanup(easy_handle);
 	curl_formfree(post_curr);
-	std::cout << "ofxCurlForm: posting to: " << action << std::endl;
 	return *this;
 }
 
@@ -67,7 +65,6 @@ void ofxCurlForm::parseForm() {
 }
 
 void ofxCurlForm::cleanup() {
-	std::cout << "cleanup!" << std::endl;
 	std::vector<ofxCurlFormType*>::iterator it = elements.begin();
 	while(it != elements.end()) {
 		delete (*it);

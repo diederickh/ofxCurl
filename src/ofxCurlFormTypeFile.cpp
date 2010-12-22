@@ -1,6 +1,5 @@
 #include "ofxCurlFormTypeFile.h"
 #include "ofxCurlForm.h"
-#include "ofxLog.h"
 #include <iostream>
 
 ofxCurlFormTypeFile::ofxCurlFormTypeFile(
@@ -13,7 +12,6 @@ ofxCurlFormTypeFile::ofxCurlFormTypeFile(
 }
 
 ofxCurlFormTypeFile::~ofxCurlFormTypeFile() {
-    OFXLOG("~~~~ ofxCurlFormTypeFile()");
 }
 
 void ofxCurlFormTypeFile::setFile(std::string sFilePath) {
@@ -30,7 +28,6 @@ void ofxCurlFormTypeFile::addToForm(
 			,curl_httppost** pLast
 )
 {
-	OFXLOG("ofxCurlFormTypeFile: " << name << " = " << file_path);
 	curl_formadd(
 		 pCurr
 		,pLast
