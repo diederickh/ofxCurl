@@ -1,9 +1,31 @@
 #include "ofxCurlFileDownload.h"
 
-ofxCurlFileDownload::ofxCurlFileDownload(std::string sURL, std::string sLocalFile)
+ofxCurlFileDownload::ofxCurlFileDownload(
+		 std::string sURL 
+		,std::string sLocalFile
+		,ofxCurlFileDownloadListener* pListener
+)
 :remote_url(sURL)
 ,file_path(sLocalFile)
+,listener(pListener)
 {
+	
+}
+
+void ofxCurlFileDownload::setURL(std::string sURL) {
+	remote_url = sURL;
+}
+
+std::string ofxCurlFileDownload::getURL() {
+	return remote_url;
+}
+
+void ofxCurlFileDownload::setDestination(std::string sFile) {
+	file_path = sFile;
+}
+	
+
+void ofxCurlFileDownload::startDownloading() {
 	file_stream.open(file_path.c_str(), std::ios::binary);
 	if(!file_stream.is_open()) {
 		printf("Could not open the file!");
@@ -50,9 +72,17 @@ void ofxCurlFileDownload::update(ofEventArgs& rArgs) {
 	int r = curl_multi_perform(multi_curl_handle, &still_running);
 	
 	if(still_running == 0) {
-		curl_easy_cleanup(curl_handle);
+		//curl_easy_cleanup(curl_handle);
 		ofRemoveListener(ofEvents.update,this,&ofxCurlFileDownload::update);
+		if(listener != NULL) {
+			file_stream.close();
+			listener->onReady(this);
+		}
 	}
+}
+
+void ofxCurlFileDownload::setListener(ofxCurlFileDownloadListener* pListener) {
+	listener = pListener;
 }
 
 ofxCurlFileDownload::~ofxCurlFileDownload() {

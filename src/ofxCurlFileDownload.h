@@ -19,12 +19,27 @@ for(int i = 0; i < 10; ++i) {
 		);
 	}
 */
+class ofxCurlFileDownload;
+class ofxCurlFileDownloadListener {
+public:
+	virtual void onReady(ofxCurlFileDownload* pDownloaded) = 0;
+};
 
 class ofxCurlFileDownload {
 public:
-	ofxCurlFileDownload(std::string sURL, std::string sLocalFile);
+	ofxCurlFileDownload(
+		 std::string sURL = ""
+		,std::string sLocalFile = ""
+		,ofxCurlFileDownloadListener* pListener = NULL
+	);
 	~ofxCurlFileDownload();
-
+	
+	void setURL(std::string sURL);
+	void setDestination(std::string sLocalFile);
+	std::string getURL();
+	
+	void startDownloading();
+	
 	static size_t writeData(
 		void *ptr
 		,size_t size
@@ -39,10 +54,12 @@ public:
      }
 	
 	 void update(ofEventArgs& rArgs); 
+	 void setListener(ofxCurlFileDownloadListener* pListener);
 	 
 private:
 	CURL* curl_handle;
 	CURLM* multi_curl_handle;
+	ofxCurlFileDownloadListener* listener;
 	std::ofstream file_stream;
 	std::string remote_url;
 	std::string file_path;
