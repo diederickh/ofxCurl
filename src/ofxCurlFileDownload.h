@@ -57,11 +57,13 @@ public:
 	 void setListener(ofxCurlFileDownloadListener* pListener);
 	 
 private:
+	void cleanup();
 	CURL* curl_handle;
 	CURLM* multi_curl_handle;
 	ofxCurlFileDownloadListener* listener;
 	std::ofstream file_stream;
 	std::string remote_url;
 	std::string file_path;
+	bool initialized;
 };
 #endif

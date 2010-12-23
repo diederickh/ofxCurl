@@ -8,6 +8,7 @@ ofxCurlFileDownload::ofxCurlFileDownload(
 :remote_url(sURL)
 ,file_path(sLocalFile)
 ,listener(pListener)
+,initialized(false)
 {
 	
 }
@@ -33,6 +34,7 @@ void ofxCurlFileDownload::startDownloading() {
 	
 	curl_handle = curl_easy_init();
 	if(curl_handle) {
+		initialized = true;
 		// set the url to download
 		curl_easy_setopt(
 			curl_handle
@@ -72,7 +74,9 @@ void ofxCurlFileDownload::update(ofEventArgs& rArgs) {
 	int r = curl_multi_perform(multi_curl_handle, &still_running);
 	
 	if(still_running == 0) {
-		//curl_easy_cleanup(curl_handle);
+		if (initialized) {
+			cleanup();
+		}
 		ofRemoveListener(ofEvents.update,this,&ofxCurlFileDownload::update);
 		if(listener != NULL) {
 			file_stream.close();
@@ -81,10 +85,17 @@ void ofxCurlFileDownload::update(ofEventArgs& rArgs) {
 	}
 }
 
+void ofxCurlFileDownload::cleanup() {
+	if(initialized) {
+		curl_easy_cleanup(curl_handle);
+		initialized = false;
+	}
+}
+
 void ofxCurlFileDownload::setListener(ofxCurlFileDownloadListener* pListener) {
 	listener = pListener;
 }
 
 ofxCurlFileDownload::~ofxCurlFileDownload() {
-	curl_easy_cleanup(curl_handle);
+	cleanup();
 }
