@@ -38,7 +38,7 @@ public:
 	void setDestination(std::string sLocalFile);
 	std::string getURL();
 	
-	void startDownloading();
+	bool startDownloading();
 	
 	static size_t writeData(
 		void *ptr
@@ -53,9 +53,11 @@ public:
 	   return bytes_to_write;
      }
 	
-	 void update(ofEventArgs& rArgs); 
 	 void setListener(ofxCurlFileDownloadListener* pListener);
-	 
+
+protected:
+	void update(ofEventArgs& rArgs); 	 
+	
 private:
 	void cleanup();
 	CURL* curl_handle;
