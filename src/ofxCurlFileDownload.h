@@ -33,7 +33,6 @@ public:
 		,ofxCurlFileDownloadListener* pListener = NULL
 	);
 	~ofxCurlFileDownload();
-	
 	void setURL(std::string sURL);
 	void setDestination(std::string sLocalFile);
 	std::string getURL();
@@ -54,9 +53,10 @@ public:
      }
 	
 	 void setListener(ofxCurlFileDownloadListener* pListener);
-
+	void update(); 	 
 protected:
-	void update(ofEventArgs& rArgs); 	 
+	//void update(ofEventArgs& rArgs); 	 
+	
 	
 private:
 	void cleanup();

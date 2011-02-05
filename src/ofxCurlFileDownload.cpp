@@ -33,7 +33,7 @@ bool ofxCurlFileDownload::startDownloading() {
 		return false;
 	}
 	curl_handle = curl_easy_init();
-	std::cout << "Start downloading: "<< remote_url << std::endl;
+	
 	if(curl_handle) {
 		initialized = true;
 		// set the url to download
@@ -70,7 +70,8 @@ bool ofxCurlFileDownload::startDownloading() {
 		CURLMcode t = curl_multi_add_handle(multi_curl_handle, curl_handle);
 	
 		// We we an update listener to continue downloading the data.
-		ofAddListener(ofEvents.update, this, &ofxCurlFileDownload::update);
+		//ofAddListener(ofEvents.update, this, &ofxCurlFileDownload::update);
+
 	}
 	else {
 		printf("Error initializing curl.\n");
@@ -79,13 +80,14 @@ bool ofxCurlFileDownload::startDownloading() {
 	return true;
 }
 
-void ofxCurlFileDownload::update(ofEventArgs& rArgs) {
+//void ofxCurlFileDownload::update(ofEventArgs& rArgs) {
+void ofxCurlFileDownload::update() {
 	int still_running = 0;
 	CURLMcode r = curl_multi_perform(multi_curl_handle, &still_running);
 	
 	if(still_running == 0) {
 		file_stream.close();
-		ofRemoveListener(ofEvents.update, this, &ofxCurlFileDownload::update);
+		//ofRemoveListener(ofEvents.update, this, &ofxCurlFileDownload::update);
 		if(listener != NULL) {
 			listener->onReady(this);
 		}
