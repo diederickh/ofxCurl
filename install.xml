@@ -2,11 +2,29 @@
 	<name>ofxCurl</name>
 	<version>0.01</version>
 	<author>Diederick Huijbers</author>
+
+	<author_website>http://www.roxlu.com</author_website>
+	<code_url>https://github.com/roxlu/ofxCurl</code_url>
+	<site_url>http://www.roxlu.com</site_url>
+	<download_url>https://github.com/roxlu/ofxCurl/zipball/master</download_url>
+	<forum_url></forum_url>
+	<supported_os>
+		<win>y</win>
+    		<mac>y</mac>
+    		<linux>n</linux>
+    	</supported_os>
+    <description><![CDATA[
+Wrapper around the fantastic <a href="http://curl.haxx.se/">libcurl</a> library which can be used
+for transferring data over a lot of different protocols (ftp,http (post,get),imap, pop3, ldap.
+    ]]></description>
+    <has_example>y</has_example>
+
 	
+    
 	<add>
 		<include>
-			<path>..\..\..\addons_diederick\ofxCurl\src\include\curl\</path>
-			<path>..\..\..\addons_diederick\ofxCurl\src\</path>
+			<path>..\..\..\addons\ofxCurl\src\include\curl\</path>
+			<path>..\..\..\addons\ofxCurl\src\</path>
 		</include>
 		
 		<link>
@@ -15,3 +33,5 @@
 	</add>
 	
 </install>
+
+
