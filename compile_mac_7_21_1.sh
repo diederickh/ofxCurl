@@ -17,7 +17,7 @@ fi
 
 if [ "$1" = "compile" ] ; then
 	cd ${dir}/download/curl
-	./configure 	--disable-ldab \
+	./configure 	--disable-ldap \
 				--without-ssl \
 				--prefix=${dir}/download/curl_lib/ \
 				--enable-static \

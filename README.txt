@@ -1,5 +1,44 @@
 ofxCurl
 ================================================================================
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++              CURL 7.21.6               +++++++++++++++++++++++ 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+I had to change the linking on Mac as I got errors from the curl rules header
+file which was complaining about sizes of longs etc.. This was I compiled a 
+64bit version instead of i386. I created two flavous so you have to link against
+the correct one (probably the llvm-gcci386 version.
+
+I used this to compile curl from sources: (See also:compile_mac_7_21_6.sh)
+=============================================================================
+#!/bin/sh
+set -x
+dir=${PWD}
+bd=${dir}/build
+if [ ! -d ${db} ] ; then
+        mkdir -p ${bd}
+fi
+
+export CC="/Developer/usr/bin/llvm-gcc-4.2"
+./configure     --disable-ldap \
+                --without-ssl \
+                --prefix=${bd} \
+                --enable-static \
+                --disable-ldaps \
+                CFLAGS="-arch i386"
+make
+make install
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++              CURL 7.21.1               +++++++++++++++++++++++ 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 This addon was created using curl-7.21.1 downloaded from:
 http://curl.haxx.se/download/curl-7.21.1.tar.gz
 
