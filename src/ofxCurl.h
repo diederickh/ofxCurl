@@ -3,7 +3,7 @@
 
 #include <string>
 #include "ofxCurlForm.h"
-
+#include "ofxCurlException.h"
 /*
 #ifdef OFXCURL_WITH_OFXCOMMANDPATTERN
 	#include "ofxCurlFormProcessor.h"
