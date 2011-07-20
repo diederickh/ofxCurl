@@ -4,6 +4,21 @@
 #include "ofxCurlFormTypeFile.h"
 
 #include <iostream>
+
+// copy response data of form post into buffer.
+size_t ofxcurl_post_write_function(char* data, size_t data_size, size_t num_data_size_entries, void* userdata) {
+
+	size_t real_num_bytes = data_size * num_data_size_entries;
+	ofxCurlForm* form = static_cast<ofxCurlForm*>(userdata);
+	std::copy(
+		 data
+		,data+real_num_bytes
+		,std::back_inserter(form->post_response_buffer)
+	);
+	
+	return real_num_bytes;
+}
+
 ofxCurlForm::ofxCurlForm(std::string sPostURL)
 	:action(sPostURL)
 	,post_curr(NULL)
@@ -55,6 +70,8 @@ ofxCurlForm& ofxCurlForm::post() {
     curl_easy_setopt(easy_handle, CURLOPT_HTTPHEADER, header_list);
 	curl_easy_setopt(easy_handle, CURLOPT_TIMEOUT_MS, timeout_after_ms);
 	curl_easy_setopt(easy_handle, CURLOPT_HTTPPOST, post_curr);
+	curl_easy_setopt(easy_handle, CURLOPT_WRITEFUNCTION, ofxcurl_post_write_function);
+	curl_easy_setopt(easy_handle, CURLOPT_WRITEDATA, this); 
 	result = curl_easy_perform(easy_handle);
 
 	// free list..
@@ -92,4 +109,13 @@ void ofxCurlForm::cleanup() {
 		delete (*it);
 		it = elements.erase(it);
 	};
+}
+
+std::vector<char> ofxCurlForm::getPostResponseAsBuffer() {
+	return post_response_buffer;
+}
+std::string ofxCurlForm::getPostResponseAsString() {
+	std::string result;
+	std::copy(post_response_buffer.begin(), post_response_buffer.end(), std::back_inserter(result));
+	return result;
 }
