@@ -14,8 +14,8 @@ public:
 	//--------------------------------------------------------------------------
 	virtual void addToForm(
 			ofxCurlForm* pForm
-			,curl_httppost** pCurr
-			,curl_httppost** pLast
+			,curl_httppost** pCurr // used to  keep track of order of added elements
+			,curl_httppost** pLast // used to  keep track of order of added elements
 	) = 0;
 
 protected:
