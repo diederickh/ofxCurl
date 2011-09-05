@@ -96,3 +96,15 @@ CURL_DISABLE_LDAP
 I also changed the curl-7.21.1\lib\config-win32.h file and added this define
 at the top:
 #define CURL_DISABLE_LDAP
+
+Note to myself
+================================================================================
+* need to write some how-to for CodeBlocks windows.
+* C::B add these search paths:
+..\..\..\addons\ofxCurl\src\include_codeblocks\
+..\..\..\addons\ofxCurl\src\
+* C::B add these linker setting (position it above ws2_32 as it needs WSA* functions)
+..\..\..\addons\ofxCurl\lib\win\libcurl.a
+* Add these defines (Compiler Settings > Defines)
+CURL_STATICLIB
+CURL_DISABLE_LDAP
